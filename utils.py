@@ -1,6 +1,4 @@
-from models import Product
 from repository import products
-
 
 def find_product_by_id(id: int):
     for p in products:
