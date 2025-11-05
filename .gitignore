@@ -1,0 +1,70 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.egg
+*.egg-info/
+*.eggs/
+build/
+dist/
+pip-wheel-metadata/
+
+# ---- Environments ----
+.env
+# .env.*
+.venv/
+venv/
+ENV/
+env/
+venv.bak/
+env.bak/
+
+# ---- IDE / Editors ----
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ---- OS Files ----
+.DS_Store
+Thumbs.db
+
+# ---- Logs & Cache ----
+*.log
+*.sqlite3
+*.db
+*.cache/
+.cache/
+pytest_cache/
+migrations/__pycache__/
+celerybeat-schedule
+__pycache__/
+
+# ---- FastAPI / Uvicorn ----
+# (if you store generated static files)
+staticfiles/
+uploads/
+media/
+
+# ---- Pytest / Coverage ----
+.coverage
+htmlcov/
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# ---- MyPy / Ruff / Pylint ----
+.mypy_cache/
+.dmypy.json
+.pyre/
+.pytype/
+.ruff_cache/
+pylint-report.txt
+
+# ---- Docker ----
+*.pid
+docker-compose.override.yml

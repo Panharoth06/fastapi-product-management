@@ -1,43 +1,26 @@
 from fastapi import FastAPI
-from models import Product
-from repository import products
-from utils import find_product_by_id
+from features.products.routes import router as product_router
+from common.exceptions import APIException, generic_exception_handler, api_exception_handler
 
-app = FastAPI()
+app = FastAPI(
+    title="FastAPI Product Management",
+    description="A feature-based FastAPI project example",
+    version="1.0.0"
+)
 
-@app.get("/message")
-def greet():
-    return "Jg yy tha pg rean Fast API"
+# Optional: run initialization logic on startup
+# @app.on_event("startup")
+# def on_startup():
+#     init_db()  # e.g., create tables, insert seed data
 
+# Include feature routers
+app.include_router(product_router, prefix="/products", tags=["Products"])
 
-@app.get("/products")
-def get_products():
-    return products
+# Register custom exception handlers
+app.add_exception_handler(APIException, api_exception_handler)
+app.add_exception_handler(Exception, generic_exception_handler)
 
-
-@app.get('/products/{id}')
-def get_product_by_id(id: int):
-    return find_product_by_id(id)
-
-
-@app.post('/products')
-def add_product(product: Product):
-    products.append(product)
-    return product
-
-@app.put('/products/{id}')
-def update_product_by_id(id: int, update_request: Product):
-    for index, p in enumerate(products):
-        if p.id == id:
-            products[index] = update_request
-            return update_request
-    return {"message": f"Product with ID {id} not found"}
-
-
-@app.delete('/products/{id}')
-def delete_product_by_id(id: int):
-    for index, p in enumerate(products):
-        if p.id == id:
-            products.remove(p)
-            return 'No content'
-    return {"message": f"Product with ID {id} not found"}
+# Simple health check endpoint
+@app.get("/")
+def home():
+    return {"message": "Welcome to FastAPI Product Management!"}
