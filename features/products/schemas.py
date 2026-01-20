@@ -1,17 +1,18 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from typing import Optional
+from uuid import UUID
 
 class ProductOut(BaseModel):
-    product_id: int = Field(alias='id') 
+    product_id: UUID = Field(alias="id")
     name: str
     description: str
     price: float
     quantity: int
-    
-    model_config = {
-        "from_attributes": True,  # Important! Allows SQLAlchemy models to be returned directly
-        "populate_by_name": True  # allows using `id` or `problem_id` when creating model
-    }
+
+    model_config = ConfigDict(
+        from_attributes=True,  # allows ORM object parsing
+        populate_by_name=True  # accepts alias names
+    )
     
 class ProductIn(BaseModel):
     name: str

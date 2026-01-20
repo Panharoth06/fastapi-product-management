@@ -1,3 +1,5 @@
+# common/base_responses.py
+
 from typing import Any, Optional
 from fastapi.responses import JSONResponse
 from fastapi import Request
@@ -15,7 +17,7 @@ class BaseAPIResponse:
         request: Request,
         data: Optional[Any] = None,
         message: str = "Request successful",
-        code: int = 200
+        code: int = 200,
     ) -> JSONResponse:
         """
         Returns a standardized success response.
@@ -27,8 +29,8 @@ class BaseAPIResponse:
                 "message": message,
                 "data": data or {},
                 "path": str(request.url.path),
-                "timestamp": datetime.now(timezone.utc).isoformat()
-            }
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+            },
         )
 
     @staticmethod
@@ -36,7 +38,7 @@ class BaseAPIResponse:
         code: int,
         request: Request,
         message: str = "An error occurred",
-        data: Optional[Any] = None
+        data: Optional[Any] = None,
     ) -> JSONResponse:
         """
         Returns a standardized error response.
@@ -48,6 +50,6 @@ class BaseAPIResponse:
                 "message": message,
                 "data": data or {},
                 "path": str(request.url.path),
-                "timestamp": datetime.now(timezone.utc).isoformat()
-            }
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+            },
         )

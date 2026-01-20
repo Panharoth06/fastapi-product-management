@@ -1,10 +1,11 @@
 # common/schemas.py
-from pydantic import BaseModel
-from typing import Any, Generic, TypeVar, Optional
+
+from typing import Generic, TypeVar, Optional
 from datetime import datetime
 from pydantic.generics import GenericModel
 
 T = TypeVar("T")
+
 
 class BaseAPIResponseModel(GenericModel, Generic[T]):
     error_code: int

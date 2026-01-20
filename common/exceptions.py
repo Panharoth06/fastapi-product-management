@@ -1,11 +1,14 @@
+# common/exceptions.py
+
 from fastapi import Request
-from fastapi.responses import JSONResponse
 from .base_responses import BaseAPIResponse
+
 
 class APIException(Exception):
     """
     Base class for custom API exceptions.
     """
+
     def __init__(self, message: str, status_code: int = 400, data=None):
         self.message = message
         self.status_code = status_code
